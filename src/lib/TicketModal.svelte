@@ -12,11 +12,16 @@
 	const dispatch = createEventDispatcher();
 
 	export let ticket;
+	export let ticketsById;
 
 	$: isOpen = ticket !== null;
 
 	const closeModal = () => {
 		dispatch('close');
+	};
+
+	const goToTicket = (ticket) => {
+		dispatch('setSelectedTicket', ticket);
 	};
 </script>
 
@@ -47,8 +52,13 @@
 				{/if}
 				{#if ticket?.blockedBy?.length}
 					<div class="flex flex-row gap-2">
-						{#each ticket.blockedBy as prereq}
-							<div class="badge badge-error badge-sm">Blocked by: {{ prereq }}</div>
+						{#each ticket.blockedBy as ticket_id}
+							<div
+								class="badge badge-error badge-sm"
+								on:click={() => goToTicket($ticketsById[ticket_id])}
+							>
+								Blocked by: {$ticketsById[ticket_id].title}
+							</div>
 						{/each}
 					</div>
 				{/if}
