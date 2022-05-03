@@ -27,12 +27,13 @@
 {/if}
 
 <div class="flex flex-col gap-4">
-	{#each $filteredTickets as ticket}
+	{#each $filteredTickets as ticket, i}
 		<div
 			class="p-4 bg-neutral flex flex-col lg:flex-row gap-4 rounded-xl items-center cursor-pointer shadow-lg"
 			role="button"
 			on:click={() => (selectedTicket = ticket)}
-		>
+			in:fade="{{delay:i*200 }}" 
+			out:fade="{{ delay:i*200 }}"		>
 			<span>{ticket.title}</span>
 			<div class="flex flex-row gap-2">
 				{#each ticket.tags as tag}
