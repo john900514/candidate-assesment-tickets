@@ -38,15 +38,39 @@
 				<div class="w-full flex justify-end pt-4">
 					<button class="p-4 btn btn-ghost" on:click={closeModal}>X</button>
 				</div>
-				<div class="flex flex-row gap-2">
-					{#each ticket.tags as tag}
-						<Badge {tag} />
-					{/each}
-				</div>
+				{#if ticket?.tags?.length}
+					<div class="flex flex-row gap-2">
+						{#each ticket.tags as tag}
+							<Badge {tag} />
+						{/each}
+					</div>
+				{/if}
+				{#if ticket?.blockedBy?.length}
+					<div class="flex flex-row gap-2">
+						{#each ticket.blockedBy as prereq}
+							<div class="badge badge-error badge-sm">Blocked by: {{ prereq }}</div>
+						{/each}
+					</div>
+				{/if}
 				<DialogTitle class="text-3xl font-bold">{ticket?.title}</DialogTitle>
-				<DialogDescription class="mt-8">
-					{ticket?.description}
+				<DialogDescription class="mt-8 flex flex-col gap-2" as="div">
+					<p>{ticket?.description}</p>
+					{#if ticket?.subtasks?.length}
+						<h2 class="font-bold uppercase text-sm">Subtasks:</h2>
+						<ol class="list-disc ml-4">
+							{#each ticket.subtasks as subtask}
+								<li>{subtask}</li>
+							{/each}
+						</ol>
+					{/if}
 				</DialogDescription>
+				{#if ticket?.images?.length}
+					<div class="flex flex-row gap-2">
+						{#each ticket.images as src}
+							<img {src} class="w-64 h-64" alt="" />
+						{/each}
+					</div>
+				{/if}
 			</div>
 		</Dialog>
 	</div>
