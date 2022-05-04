@@ -8,7 +8,8 @@
 	export let clickable = false;
 
 	let badgeClass = '';
-	switch (tag) {
+    $:{
+        switch (tag) {
 		case 'front-end':
 			badgeClass = 'badge-success';
 			break;
@@ -19,7 +20,7 @@
 			badgeClass = 'badge-warning';
 			break;
 		case 'challenge':
-			badgeClass = 'bg-pink-500';
+			badgeClass = 'bg-pink-500 text-white';
 			break;
 		case 'mobile':
 			badgeClass = 'badge-primary';
@@ -39,7 +40,12 @@
 		case 'performance':
 			badgeClass = 'bg-orange-500 text-white';
 			break;
+        default:
+            badgeClass = 'badge-default';
+            break;
 	}
+    }
+	
 </script>
 
 <div
