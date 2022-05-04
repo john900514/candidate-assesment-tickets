@@ -19,11 +19,13 @@
 	$: isOpen = ticket !== null;
 
 	const closeModal = () => {
+        selectedImage = null;
 		dispatch('close');
 	};
 
 	const goToTicket = (ticket) => {
 		dispatch('setSelectedTicket', ticket);
+        selectedImage = null;
 	};
 </script>
 
