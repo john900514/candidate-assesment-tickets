@@ -28,14 +28,17 @@ const tickets = [
 		description:
 			'Many of the pages contain the "DefaultFooter" component at the bottom of the page.  The content is being cutoff. "START YOUR ATHLETIC CLUB EXPERIENCE"  should be vertically inline with the content below it.  Ensure the content looks acceptable on mobile devices as well.',
 		tags: ['front-end', 'bug-fix'],
-		images: []
+		images: [
+			{ src: 'footer_current.png', description: 'text overflowing off the sides of screen' },
+			{ src: 'footer_desired.png', description: 'how it should look' }
+		]
 	},
 	{
 		id: 4,
 		title: 'Home Page - Initial CTA cutoff on wide screens',
 		description: 'On wide aspect ratio displays, the CTAs are cutoff on the home page.',
 		tags: ['front-end', 'bug-fix'],
-		images: []
+		images: [{ src: 'footer_desired.png', description: 'how it should look' }]
 	},
 	{
 		id: 5,

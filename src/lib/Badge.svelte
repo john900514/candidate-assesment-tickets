@@ -8,44 +8,43 @@
 	export let clickable = false;
 
 	let badgeClass = '';
-    $:{
-        switch (tag) {
-		case 'front-end':
-			badgeClass = 'badge-success';
-			break;
-		case 'new-feature':
-			badgeClass = 'badge-info';
-			break;
-		case 'bug-fix':
-			badgeClass = 'badge-warning';
-			break;
-		case 'challenge':
-			badgeClass = 'bg-pink-500 text-white';
-			break;
-		case 'mobile':
-			badgeClass = 'badge-primary';
-			break;
-		case 'full-stack':
-			badgeClass = 'badge-secondary';
-			break;
-		case 'animation':
-			badgeClass = 'badge-accent';
-			break;
-		case 'back-end':
-			badgeClass = 'bg-gray-300 text-black';
-			break;
-		case 'reporting':
-			badgeClass = 'bg-blue-200 text-black';
-			break;
-		case 'performance':
-			badgeClass = 'bg-orange-500 text-white';
-			break;
-        default:
-            badgeClass = 'badge-default';
-            break;
+	$: {
+		switch (tag) {
+			case 'front-end':
+				badgeClass = 'badge-success';
+				break;
+			case 'new-feature':
+				badgeClass = 'badge-info';
+				break;
+			case 'bug-fix':
+				badgeClass = 'badge-warning';
+				break;
+			case 'challenge':
+				badgeClass = 'bg-pink-500 text-white';
+				break;
+			case 'mobile':
+				badgeClass = 'badge-primary';
+				break;
+			case 'full-stack':
+				badgeClass = 'badge-secondary';
+				break;
+			case 'animation':
+				badgeClass = 'badge-accent';
+				break;
+			case 'back-end':
+				badgeClass = 'bg-gray-300 text-black';
+				break;
+			case 'reporting':
+				badgeClass = 'bg-blue-200 text-black';
+				break;
+			case 'performance':
+				badgeClass = 'bg-orange-500 text-white';
+				break;
+			default:
+				badgeClass = 'badge-default';
+				break;
+		}
 	}
-    }
-	
 </script>
 
 <div

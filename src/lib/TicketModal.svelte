@@ -14,6 +14,8 @@
 	export let ticket;
 	export let ticketsById;
 
+	let selectedImage = null;
+
 	$: isOpen = ticket !== null;
 
 	const closeModal = () => {
@@ -39,7 +41,7 @@
 
 			<div
 				class="flex flex-col gap-2 px-8 lg:px-16 pb-8 lg:pb-16 bg-base-300 w-[90vw] lg:w-[50rem] lg:max-w-[50vw] rounded-lg relative"
-                in:fly
+				in:fly
 			>
 				<div class="w-full flex justify-end pt-4">
 					<button class="p-4 btn btn-ghost" on:click={closeModal}>X</button>
@@ -76,13 +78,41 @@
 					{/if}
 				</DialogDescription>
 				{#if ticket?.images?.length}
+					<h2 class="font-bold uppercase text-sm mt-4">Attachments:</h2>
 					<div class="flex flex-row gap-2">
-						{#each ticket.images as src}
-							<img {src} class="w-64 h-64" alt="" />
+						{#each ticket.images as image}
+							<button on:click={() => (selectedImage = image)}
+								><img
+									src={image.src}
+									class="w-32 h-32 rounded border border-white border-opacity-50 object-cover"
+									alt=""
+								/></button
+							>
 						{/each}
 					</div>
 				{/if}
 			</div>
 		</Dialog>
 	</div>
+
+	{#if selectedImage}
+		<Dialog
+			open={selectedImage !== null}
+			static
+			on:close={() => (selectedImage = null)}
+			class="fixed z-2 inset-0 flex flex-col items-center justify-center"
+		>
+			<DialogOverlay
+				class="absolute inset-0 bg-base-content bg-opacity-50 filter backdrop-blur-sm"
+			/>
+
+			<div class="flex flex-col gap-2 px-8 lg:px-16 pb-8 lg:pb-16 relative" in:fade>
+				<img src={selectedImage.src} class="w-full h-full object-fit" alt={selectedImage?.description} />
+				<DialogTitle class="text-3xl font-bold">{ticket?.title}</DialogTitle>
+				<DialogDescription class="text-white absolute bottom-0 inset-x-0 px-8" as="div">
+					<p>{selectedImage?.description}</p>
+				</DialogDescription>
+			</div>
+		</Dialog>
+	{/if}
 {/if}
