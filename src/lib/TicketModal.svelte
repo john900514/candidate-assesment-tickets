@@ -6,7 +6,7 @@
 		DialogTitle,
 		DialogDescription
 	} from '@rgossiaux/svelte-headlessui';
-	import { fade } from 'svelte/transition';
+	import { fade, fly } from 'svelte/transition';
 	import Badge from '$lib/Badge.svelte';
 
 	const dispatch = createEventDispatcher();
@@ -39,6 +39,7 @@
 
 			<div
 				class="flex flex-col gap-2 px-8 lg:px-16 pb-8 lg:pb-16 bg-base-300 w-[90vw] lg:w-[50rem] lg:max-w-[50vw] rounded-lg relative"
+                in:fly
 			>
 				<div class="w-full flex justify-end pt-4">
 					<button class="p-4 btn btn-ghost" on:click={closeModal}>X</button>
@@ -53,12 +54,12 @@
 				{#if ticket?.blockedBy?.length}
 					<div class="flex flex-row gap-2">
 						{#each ticket.blockedBy as ticket_id}
-							<div
-								class="badge badge-error badge-sm"
+							<button
+								class="badge badge-error badge-sm cursor-pointer"
 								on:click={() => goToTicket($ticketsById[ticket_id])}
 							>
 								Blocked by: {$ticketsById[ticket_id].title}
-							</div>
+							</button>
 						{/each}
 					</div>
 				{/if}
@@ -66,7 +67,7 @@
 				<DialogDescription class="mt-8 flex flex-col gap-2" as="div">
 					<p>{ticket?.description}</p>
 					{#if ticket?.subtasks?.length}
-						<h2 class="font-bold uppercase text-sm">Subtasks:</h2>
+						<h2 class="font-bold uppercase text-sm mt-4">Subtasks:</h2>
 						<ol class="list-disc ml-4">
 							{#each ticket.subtasks as subtask}
 								<li>{subtask}</li>

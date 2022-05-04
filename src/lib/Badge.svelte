@@ -1,4 +1,6 @@
 <script>
+	import { fade } from 'svelte/transition';
+
 	export let tag;
 
 	export let closeable = false;
@@ -17,7 +19,7 @@
 			badgeClass = 'badge-warning';
 			break;
 		case 'challenge':
-			badgeClass = 'badge-error';
+			badgeClass = 'bg-pink-500';
 			break;
 		case 'mobile':
 			badgeClass = 'badge-primary';
@@ -28,6 +30,15 @@
 		case 'animation':
 			badgeClass = 'badge-accent';
 			break;
+		case 'back-end':
+			badgeClass = 'bg-gray-300 text-black';
+			break;
+		case 'reporting':
+			badgeClass = 'bg-blue-200 text-black';
+			break;
+		case 'performance':
+			badgeClass = 'bg-orange-500 text-white';
+			break;
 	}
 </script>
 
@@ -35,6 +46,7 @@
 	class="badge badge-sm {badgeClass}"
 	class:cursor-pointer={clickable}
 	on:click|preventDefault|stopPropagation
+	transition:fade
 >
 	{tag}
 	{#if closeable}

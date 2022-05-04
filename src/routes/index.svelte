@@ -16,15 +16,17 @@
 	};
 </script>
 
-{#if $filter}
-	<div
-		transition:fade
-		class="flex flex-row gap-4 py-4 items-center border border-1 rounded-lg px-4 my-4"
-	>
+<div
+	transition:fade
+	class="flex flex-row gap-4 py-4 items-center border border-1 rounded-lg px-4 my-4"
+>
+	{#if $filter}
 		<div>Only Showing:</div>
 		<Badge tag={$filter} on:click={() => ($filter = null)} closeable clickable />
-	</div>
-{/if}
+	{:else}
+		<div>All Tickets:</div>
+	{/if}
+</div>
 
 <div class="flex flex-col gap-4">
 	{#each $filteredTickets as ticket, i}
@@ -32,8 +34,9 @@
 			class="p-4 bg-neutral flex flex-col lg:flex-row gap-4 rounded-xl items-center cursor-pointer shadow-lg"
 			role="button"
 			on:click={() => (selectedTicket = ticket)}
-			in:fade="{{delay:i*200 }}" 
-			out:fade="{{ delay:i*200 }}"		>
+			in:fade={{ delay: i * 100 }}
+			out:fade={{ delay: i * 100 }}
+		>
 			<span>{ticket.title}</span>
 			<div class="flex flex-row gap-2">
 				{#each ticket.tags as tag}
